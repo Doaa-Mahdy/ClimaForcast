@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <label class="logo">ClimaForecast</label>
+        <ul class="list">
+            <li><a href="#about" onclick="showLoading('#about')">About</a></li>
+            <li><a href="#electricity" onclick="showLoading('#electricity')">Electricity Forecast</a></li>
+            <li><a href="#temperature" onclick="showLoading('#temperature')">Temperature Forecast</a></li>
+            <li><a href="#population" onclick="showLoading('#population')">Population Forecast</a></li>
+            <li><a href="#agriculture" onclick="showLoading('#agriculture')">Agriculture Forecast</a></li>
+        </ul>        
+    </nav>
+    <div class="loading-container" id="loading">
+        <h1 data-text="loading...">loading...</h1>
+    </div>
+    <div id="about" class="content-box">
+        <h2>About</h2>
+        <p>In pursuit of global Sustainable Development Goals, understanding and mitigating climate change impacts is paramount. Among these, air temperature emerges as a critical factor with far-reaching consequences. It affects agriculture, ecosystems, energy systems, and even industries. This project provides a real-time tool to forecast all climate-related data for Egypt using advanced machine learning models. The project utilizes Linear Regression and SARIMAX models to capture seasonal patterns from historical data (1990-2023) and provide accurate forecasts. These models are evaluated using the Root Mean Squared Error (RMSE) metric. The ultimate goal is to enhance climate prediction accuracy, aiding in better planning and decision-making for infrastructure, insurance, energy policies, and business development, thereby contributing to sustainable technology and climate resilience efforts.
+        </p>
+    </div>
+
+    <div id="electricity" class="content-box">
+        <h2>Electricity Forecast</h2>
+        <p>Information about electricity forecasting and its importance in energy management.</p>
+        <div id = "ImgElec" class="image-container"> </div>
+        <div id = "PredElec" class="image-container"> </div>
+        <button onclick="toggleImage('electricity', 'ImgElec' )">Electricity</button>
+        <button onclick="toggleImage('electricity_pred', 'PredElec')">Electricity Prediction</button>
+
+    </div>
+
+    <div id="temperature" class="content-box">
+        <h2>Temperature Forecast</h2>
+        <p>Details on temperature forecasting and how it affects various sectors.</p>
+        <div id = "ImgTemp" class="image-container"> </div>
+        <div id = "PredTemp" class="image-container"> </div>
+        <button onclick="toggleImage('climate_change', 'ImgTemp' )">Climate Change</button>
+        <button onclick="toggleImage('climate_change_pred', 'PredTemp')">Climate Change Prediction</button>
+    </div>
+
+    <div id="population" class="content-box">
+        <h2>Population Forecast</h2>
+        <p>An overview of population forecasting and its impact on resource planning.</p>
+        <div id = "ImgPop" class="image-container"> </div>
+        <div id = "PredPop" class="image-container"> </div>
+        <button onclick="toggleImage('population', 'ImgPop' )">Population</button>
+        <button onclick="toggleImage('population_pred', 'PredPop')">Population Prediction</button>
+ 
+    </div>
+
+    <div id="agriculture" class="content-box">
+        <h2>Agriculture Forecast</h2>
+        <p>Insights into agriculture forecasting and its role in food security.</p>
+        <div id = "ImgAgr" class="image-container"> </div>
+        <div id = "PredAgr" class="image-container"> </div>
+        <button onclick="toggleImage('agricultural', 'ImgAgr' )">Agricultural</button>
+        <button onclick="toggleImage('agricultural_pred', 'PredAgr')">Agricultural Prediction</button>
+    </div>
+    <div>
+    <video class="background-video" autoplay loop muted>
+        <source src="vid.gif" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+     </div>
+    <script>
+   function showLoading(sectionId) {
+    const loading = document.getElementById('loading');
+    loading.style.display = 'flex'; // Show loading screen
+    setTimeout(() => {
+        loading.style.display = 'none';  
+        const targetElement = document.querySelector(sectionId);
+        const navBarHeight = document.querySelector('nav').offsetHeight;
+
+        // Scroll to the element with offset to account for the fixed navbar
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Adjust scroll position to account for fixed navbar
+        window.scrollBy(0, -navBarHeight-30);
+    }, 1500); 
+}
+function toggleImage(imageName, place) {
+    const imageContainer = document.getElementById(place);
+
+    if (imageContainer.innerHTML.includes(`${imageName}.png`)) {
+        imageContainer.innerHTML = ''; // Remove the image if it's already displayed
+    } else {
+        imageContainer.innerHTML = `<img src="${imageName}.png" alt="${imageName} Graph">`; // Display the image
+    }
+}
+
+    </script>
+</body>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>About ClimaForecast</h2>
+            <p>ClimaForecast is dedicated to providing accurate climate predictions to aid in sustainable planning and development. Learn more about our mission and the models we use.</p>
+        </div>
+
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#about" onclick="showLoading('#about')">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section team">
+            <h2>Meet Our Team</h2>
+            <img src="team3.jpg" alt="Our team"> 
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2024 ClimaForecast | Designed by Doaa
+    </div>
+</footer>
+
+
+</html>
